@@ -5,12 +5,14 @@
 #define CS GPIO_NUM_16
 spi_device_handle_t spi;
 
+DS1722_Driver Temp;
+
 void DS1722_Driver::init()
 {
 	// Конфигурация шины SPI (HSPI)
 	spi_bus_config_t buscfg = {
-		.miso_io_num = 12,
 		.mosi_io_num = 13,
+		.miso_io_num = 12,
 		.sclk_io_num = 14,
 		.quadwp_io_num = -1,
 		.quadhd_io_num = -1,

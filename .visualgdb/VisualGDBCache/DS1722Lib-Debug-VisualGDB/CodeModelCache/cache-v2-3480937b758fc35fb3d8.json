@@ -1127,7 +1127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "119"
+			"value" : "120"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -1207,7 +1207,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "DS1722Lib"
+			"value" : "blink"
 		},
 		{
 			"name" : "CMAKE_PROJECT_VERSION",
@@ -1976,6 +1976,42 @@
 			],
 			"type" : "INTERNAL",
 			"value" : ""
+		},
+		{
+			"name" : "blink_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "D:/VS/DS1722Lib/DS1722Lib/build/VisualGDB/Debug"
+		},
+		{
+			"name" : "blink_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "blink_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "D:/VS/DS1722Lib/DS1722Lib"
 		},
 		{
 			"name" : "esp-idf_BINARY_DIR",

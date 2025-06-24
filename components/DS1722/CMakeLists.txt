@@ -3,4 +3,4 @@
 idf_component_register(
 	SRCS "DS1722.cpp"
 	INCLUDE_DIRS "."
-	)
+	REQUIRES driver)

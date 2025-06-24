@@ -1251,6 +1251,9 @@
 			"path" : "C:/SysGCC/esp32/esp-idf/v5.4/components/wifi_provisioning/CMakeLists.txt"
 		},
 		{
+			"path" : "components/DS1722/CMakeLists.txt"
+		},
+		{
 			"path" : "managed_components/espressif__led_strip/CMakeLists.txt"
 		},
 		{

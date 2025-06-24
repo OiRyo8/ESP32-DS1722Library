@@ -3,6 +3,6 @@
 cmake_minimum_required(VERSION 3.16)
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-project(DS1722Lib)
+project(blink)
 
-set(COMPONENTS main)
+set(COMPONENTS main components)

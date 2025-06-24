@@ -62,7 +62,7 @@
 	[
 		{
 			"backtrace" : 6,
-			"id" : "DS1722Lib.elf::@6890427a1f51a3e7e1df"
+			"id" : "blink.elf::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "monitor::@6890427a1f51a3e7e1df",

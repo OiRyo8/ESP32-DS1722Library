@@ -7,7 +7,7 @@
 		],
 		"files" : 
 		[
-			"C:/SysGCC/esp32/esp-idf/v5.4/components/mbedtls/mbedtls/3rdparty/everest/CMakeLists.txt"
+			"C:/SysGCC/esp32/esp-idf/v5.4/components/mbedtls/mbedtls/3rdparty/p256-m/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -17,13 +17,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 31,
+				"line" : 29,
 				"parent" : 0
 			},
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 39,
+				"line" : 37,
 				"parent" : 0
 			}
 		]
@@ -36,7 +36,7 @@
 			"destination" : "include",
 			"paths" : 
 			[
-				"C:/SysGCC/esp32/esp-idf/v5.4/components/mbedtls/mbedtls/3rdparty/everest/include/everest"
+				"C:/SysGCC/esp32/esp-idf/v5.4/components/mbedtls/mbedtls/3rdparty/p256-m/:C:/SysGCC/esp32/esp-idf/v5.4/components/mbedtls/mbedtls/3rdparty/p256-m"
 			],
 			"type" : "directory"
 		},
@@ -46,10 +46,10 @@
 			"destination" : "lib",
 			"paths" : 
 			[
-				"esp-idf/mbedtls/mbedtls/3rdparty/everest/libeverest.a"
+				"esp-idf/mbedtls/mbedtls/3rdparty/p256-m/libp256m.a"
 			],
-			"targetId" : "everest::@3ecd26ac3776729513f0",
-			"targetIndex" : 110,
+			"targetId" : "p256m::@c854ae7c6350d6f63df0",
+			"targetIndex" : 122,
 			"type" : "target"
 		},
 		{
@@ -57,8 +57,8 @@
 			"component" : "Unspecified",
 			"cxxModuleBmiTarget" : 
 			{
-				"id" : "everest::@3ecd26ac3776729513f0",
-				"index" : 110
+				"id" : "p256m::@c854ae7c6350d6f63df0",
+				"index" : 122
 			},
 			"destination" : "lib",
 			"type" : "cxxModuleBmi"
@@ -66,7 +66,7 @@
 	],
 	"paths" : 
 	{
-		"build" : "esp-idf/mbedtls/mbedtls/3rdparty/everest",
-		"source" : "C:/SysGCC/esp32/esp-idf/v5.4/components/mbedtls/mbedtls/3rdparty/everest"
+		"build" : "esp-idf/mbedtls/mbedtls/3rdparty/p256-m",
+		"source" : "C:/SysGCC/esp32/esp-idf/v5.4/components/mbedtls/mbedtls/3rdparty/p256-m"
 	}
 }

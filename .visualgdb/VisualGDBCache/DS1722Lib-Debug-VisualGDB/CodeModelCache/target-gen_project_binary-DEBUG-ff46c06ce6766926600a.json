@@ -69,7 +69,7 @@
 	[
 		{
 			"backtrace" : 7,
-			"id" : "DS1722Lib.elf::@6890427a1f51a3e7e1df"
+			"id" : "blink.elf::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "gen_project_binary::@6890427a1f51a3e7e1df",

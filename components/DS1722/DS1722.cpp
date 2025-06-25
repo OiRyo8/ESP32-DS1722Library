@@ -9,7 +9,7 @@ DS1722_Driver Temp;
 
 void DS1722_Driver::init()
 {
-	// Конфигурация шины SPI (HSPI)
+	// РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ С€РёРЅС‹ SPI (HSPI)
 	spi_bus_config_t buscfg = {
 		.mosi_io_num = 13,
 		.miso_io_num = 12,
@@ -19,18 +19,18 @@ void DS1722_Driver::init()
 		.max_transfer_sz = 32,
 	};
 
-	// Конфигурация устройства DS1722
+	// РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ СѓСЃС‚СЂРѕР№СЃС‚РІР° DS1722
 	spi_device_interface_config_t devcfg = {
 		.mode = 3,
 		// SPI Mode 3
 		.clock_speed_hz = 1 * 1000 * 1000,
-		// 1 MHz (макс. 2.5 MHz для DS1722)
+		// 1 MHz (РјР°РєСЃ. 2.5 MHz РґР»СЏ DS1722)
 		//.spics_io_num = 16,
 		// CS pin
 		.queue_size = 1,
 	};
 
-	// Инициализация SPI
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ SPI
 	ESP_ERROR_CHECK(spi_bus_initialize(SPI2_HOST, &buscfg, 0));
 	ESP_ERROR_CHECK(spi_bus_add_device(SPI2_HOST, &devcfg, &spi));
 	
@@ -38,25 +38,43 @@ void DS1722_Driver::init()
 	gpio_set_direction(CS, GPIO_MODE_OUTPUT);
 }
 
-float DS1722_Driver::measure(uint8_t *tx_buf, uint8_t *rx_buf, uint16_t len)
-{
+void DS1722_Driver::config(uint8_t *tx_buf, uint8_t* rx_buf, uint16_t len) {
+	
+	tx_buf[0] = 0x80;
+	tx_buf[1] = 0x78;
+	
 	spi_transaction_t t = {
 		.length = len,
-		// 16 бит (2 байта)
+		// 16 Р±РёС‚ (2 Р±Р°Р№С‚Р°)
 		.tx_buffer = tx_buf,
 		.rx_buffer = rx_buf,
 	};
 
-	// Отправка команды и чтение данных
+	// РћС‚РїСЂР°РІРєР° РєРѕРјР°РЅРґС‹ Рё С‡С‚РµРЅРёРµ РґР°РЅРЅС‹С…
+	gpio_set_level(CS, 1);
+	ESP_ERROR_CHECK(spi_device_transmit(spi, &t));
+	gpio_set_level(CS, 0);
+}
+
+float DS1722_Driver::measure(uint8_t *tx_buf, uint8_t *rx_buf, uint16_t len)
+{
+	spi_transaction_t t = {
+		.length = len,
+		// 16 Р±РёС‚ (2 Р±Р°Р№С‚Р°)
+		.tx_buffer = tx_buf,
+		.rx_buffer = rx_buf,
+	};
+
+	// РћС‚РїСЂР°РІРєР° РєРѕРјР°РЅРґС‹ Рё С‡С‚РµРЅРёРµ РґР°РЅРЅС‹С…
 	gpio_set_level(CS, 1);
 	
 	ESP_ERROR_CHECK(spi_device_transmit(spi, &t));
 	
 	gpio_set_level(CS, 0);
 	
-	// Преобразование данных
+	// РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РґР°РЅРЅС‹С…
 	int16_t raw_temp = (rx_buf[0] << 8) | rx_buf[1];
-	return raw_temp * 0.0625f;  // Умножаем на разрешение
+	return raw_temp;  // РЈРјРЅРѕР¶Р°РµРј РЅР° СЂР°Р·СЂРµС€РµРЅРёРµ
 }
 
 float DS1722_Driver::get_temp()
@@ -65,7 +83,7 @@ float DS1722_Driver::get_temp()
 	uint8_t rx_buf[2];
 	uint8_t temp_buf[2];
 	
-	tx_buf[0] = 0x01;
+	tx_buf[0] = 0x01; 
 	tx_buf[1] = 0x00;
 	Temp.measure(tx_buf, rx_buf, 8 * sizeof(tx_buf));
 	temp_buf[0] = rx_buf[1];

@@ -2281,7 +2281,7 @@
 				{
 					"directoryIndex" : 16,
 					"id" : "__idf_esp_app_format::@08c2bdce7fd85cdbea06",
-					"jsonFile" : "target-__idf_esp_app_format-DEBUG-817770977ca55c533a08.json",
+					"jsonFile" : "target-__idf_esp_app_format-DEBUG-06ae93b5b53c43efded6.json",
 					"name" : "__idf_esp_app_format",
 					"projectIndex" : 1
 				},
@@ -2491,7 +2491,7 @@
 				{
 					"directoryIndex" : 100,
 					"id" : "__idf_esp_local_ctrl::@d6aad58d2946e56208ef",
-					"jsonFile" : "target-__idf_esp_local_ctrl-DEBUG-03d6d6efc211d477b88e.json",
+					"jsonFile" : "target-__idf_esp_local_ctrl-DEBUG-83aa835ab0cbc815e917.json",
 					"name" : "__idf_esp_local_ctrl",
 					"projectIndex" : 1
 				},
@@ -2701,7 +2701,7 @@
 				{
 					"directoryIndex" : 99,
 					"id" : "__idf_protocomm::@d76d01c8dec06205e1fc",
-					"jsonFile" : "target-__idf_protocomm-DEBUG-7dfbc079b56b3507d8c4.json",
+					"jsonFile" : "target-__idf_protocomm-DEBUG-3809e79fde5288870fbd.json",
 					"name" : "__idf_protocomm",
 					"projectIndex" : 1
 				},
@@ -2792,7 +2792,7 @@
 				{
 					"directoryIndex" : 116,
 					"id" : "__idf_wifi_provisioning::@9d7e7ffe1b15746c1098",
-					"jsonFile" : "target-__idf_wifi_provisioning-DEBUG-cc52afdf57bc4b9e0a51.json",
+					"jsonFile" : "target-__idf_wifi_provisioning-DEBUG-e5dbc88c4812d0101460.json",
 					"name" : "__idf_wifi_provisioning",
 					"projectIndex" : 1
 				},
@@ -2813,7 +2813,7 @@
 				{
 					"directoryIndex" : 24,
 					"id" : "__ldgen_output_sections.ld::@874df54e61e20112dfd4",
-					"jsonFile" : "target-__ldgen_output_sections.ld-DEBUG-ac68660db7b0e28b5e6f.json",
+					"jsonFile" : "target-__ldgen_output_sections.ld-DEBUG-d292c5bbf45fc8eede3d.json",
 					"name" : "__ldgen_output_sections.ld",
 					"projectIndex" : 1
 				},
@@ -2855,7 +2855,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "blink.elf::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-blink.elf-DEBUG-e187e88d106718da1f39.json",
+					"jsonFile" : "target-blink.elf-DEBUG-00107d5bb8635c3b7a0e.json",
 					"name" : "blink.elf",
 					"projectIndex" : 0
 				},
@@ -2988,7 +2988,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "flash::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-flash-DEBUG-5cabc8da4f8ebcb913f0.json",
+					"jsonFile" : "target-flash-DEBUG-55ee53cac81164e52dc2.json",
 					"name" : "flash",
 					"projectIndex" : 0
 				},

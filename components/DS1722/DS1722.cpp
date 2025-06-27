@@ -40,9 +40,6 @@ void DS1722_Driver::init()
 
 void DS1722_Driver::config(uint8_t *tx_buf, uint8_t* rx_buf, uint16_t len) {
 	
-	tx_buf[0] = 0x80;
-	tx_buf[1] = 0x78;
-	
 	spi_transaction_t t = {
 		.length = len,
 		// 16 бит (2 байта)
@@ -56,12 +53,12 @@ void DS1722_Driver::config(uint8_t *tx_buf, uint8_t* rx_buf, uint16_t len) {
 	gpio_set_level(CS, 0);
 }
 
-float DS1722_Driver::measure(uint8_t *tx_buf, uint8_t *rx_buf, uint16_t len)
+float DS1722_Driver::read(uint8_t *tx_buf, uint8_t *rx_buf, uint16_t len)
 {
 	spi_transaction_t t = {
 		.length = len,
 		// 16 бит (2 байта)
-		.tx_buffer = tx_buf,
+   		.tx_buffer = tx_buf,
 		.rx_buffer = rx_buf,
 	};
 
@@ -72,26 +69,24 @@ float DS1722_Driver::measure(uint8_t *tx_buf, uint8_t *rx_buf, uint16_t len)
 	
 	gpio_set_level(CS, 0);
 	
-	// Преобразование данных
-	int16_t raw_temp = (rx_buf[0] << 8) | rx_buf[1];
-	return raw_temp;  // Умножаем на разрешение
+	return rx_buf[1];  
 }
+
+
+
+uint8_t tx_buf[2];
+uint8_t rx_buf[2];
+uint8_t temp_buf[2];
 
 float DS1722_Driver::get_temp()
 {
-	uint8_t tx_buf[2];
-	uint8_t rx_buf[2];
-	uint8_t temp_buf[2];
-	
 	tx_buf[0] = 0x01; 
 	tx_buf[1] = 0x00;
-	Temp.measure(tx_buf, rx_buf, 8 * sizeof(tx_buf));
-	temp_buf[0] = rx_buf[1];
+	temp_buf[0] = Temp.read(tx_buf, rx_buf, 8 * sizeof(tx_buf));
 		
 	tx_buf[0] = 0x02;
 	tx_buf[1] = 0x00;
-	Temp.measure(tx_buf, rx_buf, 8 * sizeof(tx_buf));
-	temp_buf[1] = rx_buf[1];
+	temp_buf[1] = Temp.read(tx_buf, rx_buf, 8 * sizeof(tx_buf));
 		
 	return 1.0f * (temp_buf[0] + (temp_buf[1] << 8)) / 0x100;
 }

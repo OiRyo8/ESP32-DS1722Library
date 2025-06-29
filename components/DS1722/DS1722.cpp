@@ -7,8 +7,12 @@ spi_device_handle_t spi;
 
 DS1722_Driver Temp;
 
-void DS1722_Driver::init()
+uint8_t res;
+uint8_t SD;
+
+void DS1722_Driver::init(int resolution, bool SD_mode)
 {
+
 	// Конфигурация шины SPI (HSPI)
 	spi_bus_config_t buscfg = {
 		.mosi_io_num = 13,
@@ -36,9 +40,46 @@ void DS1722_Driver::init()
 	
 	gpio_reset_pin(CS);
 	gpio_set_direction(CS, GPIO_MODE_OUTPUT);
+	
+	
+	
+	switch (resolution)
+	{
+	case 8:
+		res = 0x00;
+	case 9:
+		res = 0x02;
+	case 10: 
+		res = 0x04;
+	case 11: 
+		res = 0x06;
+	case 12:
+		res = 0x08;
+	default:
+		res = 0x08;
+	}
+	
+	if (SD_mode == true)
+	{
+		SD = 0x01;
+	}
+	else
+	{
+		SD = 0x00;
+	}	
+	
+	uint8_t conf_byte = 0xE0 + 0 + res + SD;
+	
+	Temp.write_config(conf_byte, 8*2);
 }
 
-void DS1722_Driver::config(uint8_t *tx_buf, uint8_t* rx_buf, uint16_t len) {
+void DS1722_Driver::write_config(uint8_t conf_byte, uint16_t len) {
+	
+	uint8_t tx_buf[2];
+	uint8_t rx_buf[2];
+	
+	tx_buf[0] = 0x80;
+	tx_buf[1] = conf_byte;
 	
 	spi_transaction_t t = {
 		.length = len,
@@ -80,6 +121,24 @@ uint8_t temp_buf[2];
 
 float DS1722_Driver::get_temp()
 {
+	tx_buf[0] = 0x01; 
+	tx_buf[1] = 0x00;
+	temp_buf[0] = Temp.read(tx_buf, rx_buf, 8 * sizeof(tx_buf));
+		
+	tx_buf[0] = 0x02;
+	tx_buf[1] = 0x00;
+	temp_buf[1] = Temp.read(tx_buf, rx_buf, 8 * sizeof(tx_buf));
+		
+	return 1.0f * (temp_buf[0] + (temp_buf[1] << 8)) / 0x100;
+}
+
+
+float DS1722_Driver::get_tempSD()
+{
+	uint8_t conf_byte = 0xE0 + 0x10 + res + SD;
+	Temp.write_config(conf_byte, 8 * 2);
+	
+	
 	tx_buf[0] = 0x01; 
 	tx_buf[1] = 0x00;
 	temp_buf[0] = Temp.read(tx_buf, rx_buf, 8 * sizeof(tx_buf));
